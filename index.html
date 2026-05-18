@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RosterSync Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Network Service Scheduling Dashboard</h1>
+
+        <div class="stats">
+
+            <div class="card">
+                <h3>Total Services</h3>
+                <p>15</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Jobs</h3>
+                <p>8</p>
+            </div>
+
+            <div class="card">
+                <h3>Cycle Status</h3>
+                <p class="success">No Cycle Found</p>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="left-panel">
+
+            <div class="panel">
+
+                <h2>Service Dependency Graph</h2>
+
+                <div id="cy"></div>
+
+            </div>
+
+            <div class="panel">
+
+                <h2>Topological Boot Order</h2>
+
+                <ol id="topology-list">
+
+                    <li>DHCP</li>
+                    <li>DNS</li>
+                    <li>WebProxy</li>
+                    <li>Firewall</li>
+                    <li>VPN</li>
+                    <li>Database</li>
+                    <li>Authentication</li>
+                    <li>Analytics</li>
+                    <li>Proxy</li>
+                    <li>Email</li>
+                    <li>WebServer</li>
+                    <li>LoadBalancer</li>
+
+                </ol>
+
+            </div>
+
+        </section>
+
+        <section class="right-panel">
+
+            <div class="panel">
+
+                <h2>CPU Scheduler</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Job</th>
+                            <th>Priority</th>
+                            <th>Remaining</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="job-table">
+
+                        <tr>
+                            <td>HugeBackup</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td class="waiting">Waiting</td>
+                        </tr>
+
+                        <tr>
+                            <td>Video1</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td class="running">Running</td>
+                        </tr>
+
+                        <tr>
+                            <td>OSUpdate</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td class="completed">Completed</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="panel">
+
+                <h2>Scheduler Logs</h2>
+
+                <div class="logs" id="logs">
+
+                    <p>Time 0: HugeBackup executing</p>
+                    <p>Context Switch: HugeBackup → Video1</p>
+                    <p>Aging Applied to HugeBackup</p>
+                    <p>Video1 finished.</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
